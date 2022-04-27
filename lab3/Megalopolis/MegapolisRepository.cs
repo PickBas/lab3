@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Globalization;
+using Newtonsoft.Json;
+using ServiceStack.Text;
 
 namespace lab3.Megalopolis
 {
@@ -20,6 +24,31 @@ namespace lab3.Megalopolis
         public MegapolisRepository(List<Megapolis> megapolis)
         {
             _megapolis = megapolis;
+        }
+        
+        public MegapolisRepository(string filePath)
+        {
+            var csvConfig = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.CurrentCulture)
+            {
+                HasHeaderRecord = false,
+                Delimiter = ","
+            };
+            StreamReader reader = new StreamReader(filePath);
+            _megapolis = new List<Megapolis>();
+            using (var csvReader = new CsvHelper.CsvReader(reader, csvConfig))
+            {
+                csvReader.Read();
+                while (csvReader.Read())
+                {
+                    csvReader.TryGetField<string>(0, out var currentName);
+                    csvReader.TryGetField<string>(1, out var currentPopulationStr);
+                    csvReader.TryGetField<string>(1, out var currentSquareStr);
+                    var currentPopulation = int.Parse(currentPopulationStr);
+                    var currentSquare = int.Parse(currentSquareStr);
+                    _megapolis.Add(new Megapolis(currentName, currentPopulation, currentSquare));
+                }
+            }
+            reader.Close();
         }
 
         public void SortDataByPopulation()
@@ -68,6 +97,32 @@ namespace lab3.Megalopolis
         {
             Log.Info("MegapolisRepository: Filtered data by square >= " + square);
             return _megapolis.Where(megapolis => megapolis.Square >= square).ToList();
+        }
+
+        public List<Megapolis> GetData()
+        {
+            return Megapolis;
+        }
+        
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(_megapolis);
+        }
+
+        public string ToCsv()
+        {
+            return CsvSerializer.SerializeToCsv(_megapolis);
+        }
+
+        public string ToXml()
+        {
+            System.Xml.Serialization.XmlSerializer xmlSerializer = new System
+                .Xml.Serialization.XmlSerializer(_megapolis.GetType());
+            using(StringWriter textWriter = new StringWriter())
+            {
+                xmlSerializer.Serialize(textWriter, _megapolis);
+                return textWriter.ToString();
+            }
         }
     }
 }
