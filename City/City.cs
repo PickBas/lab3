@@ -2,26 +2,46 @@
 {
     public class City
     {
-        private string _name;
-        private int _population;
-        private int _square;
+        private readonly string _name;
+        private readonly int _population;
+        private readonly int _square;
 
-        public string Name
+        public City()
         {
-            get => _name;
-            set => _name = value;
+            _name = "Unknown";
+            _population = 0;
+            _square = 0;
         }
 
-        public int Population
+        public City(string name, int population, int square)
         {
-            get => _population;
-            set => _population = value;
+            _name = name;
+            _population = population;
+            _square = square;
         }
 
-        public int Square
+        public string Name => _name;
+
+        public int Population => _population;
+
+        public int Square => _square;
+
+        public override string ToString()
         {
-            get => _square;
-            set => _square = value;
+            return "name: " + _name + ", population: " + _population + ", square: " + _square;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is City city
+                   && _name.Equals(city.Name)
+                   && _population == city.Population
+                   && _square == city.Square;
+        }
+
+        public override int GetHashCode()
+        {
+            return (_name, _population, _square).GetHashCode();
         }
     }
 }

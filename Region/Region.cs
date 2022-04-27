@@ -2,26 +2,46 @@
 {
     public class Region
     {
-        private string _name;
-        private int _population;
-        private int _square;
+        private readonly string _name;
+        private readonly int _population;
+        private readonly int _square;
 
-        public string Name
+        public Region()
         {
-            get => _name;
-            set => _name = value;
+            _name = "Unknown";
+            _population = 0;
+            _square = 0;
         }
 
-        public int Population
+        public Region(string name, int population, int square)
         {
-            get => _population;
-            set => _population = value;
+            _name = name;
+            _population = population;
+            _square = square;
         }
 
-        public int Square
+        public string Name => _name;
+
+        public int Population => _population;
+
+        public int Square => _square;
+        
+        public override string ToString()
         {
-            get => _square;
-            set => _square = value;
+            return "name: " + _name + ", population: " + _population + ", square: " + _square;
+        }
+        
+        public override bool Equals(object obj)
+        {
+            return obj is Region region
+                   && _name.Equals(region.Name)
+                   && _population == region.Population
+                   && _square == region.Square;
+        }
+
+        public override int GetHashCode()
+        {
+            return (_name, _population, _square).GetHashCode();
         }
     }
 }
