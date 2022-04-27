@@ -2,9 +2,9 @@
 {
     public class City
     {
-        private string _name;
-        private int _population;
-        private int _square;
+        private readonly string _name;
+        private readonly int _population;
+        private readonly int _square;
 
         public City()
         {
@@ -20,22 +20,23 @@
             _square = square;
         }
 
-        public string Name
+        public string Name => _name;
+
+        public int Population => _population;
+
+        public int Square => _square;
+
+        public override bool Equals(object obj)
         {
-            get => _name;
-            set => _name = value;
+            return obj is City city
+                   && _name.Equals(city.Name)
+                   && _population == city.Population
+                   && _square == city.Square;
         }
 
-        public int Population
+        public override int GetHashCode()
         {
-            get => _population;
-            set => _population = value;
-        }
-
-        public int Square
-        {
-            get => _square;
-            set => _square = value;
+            return (_name, _population, _square).GetHashCode();
         }
     }
 }

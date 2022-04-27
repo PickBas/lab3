@@ -50,12 +50,12 @@ namespace lab3.City
 
         public List<City> FilterDataByPopulation(int population)
         {
-            return _city.Where(city => city.Population > population).ToList();
+            return _city.Where(city => city.Population >= population).ToList();
         }
 
         public List<City> FilterDataBySquare(int square)
         {
-            return _city.Where(city => city.Square > square).ToList();
+            return _city.Where(city => city.Square >= square).ToList();
         }
     }
 }
