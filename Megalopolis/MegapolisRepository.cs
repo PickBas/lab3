@@ -53,12 +53,12 @@ namespace lab3.Megalopolis
 
         public List<Megapolis> FilterDataByPopulation(int population)
         {
-            return _megapolis.Where(megapolis => megapolis.Population > population).ToList();
+            return _megapolis.Where(megapolis => megapolis.Population >= population).ToList();
         }
 
         public List<Megapolis> FilterDataBySquare(int square)
         {
-            return _megapolis.Where(megapolis => megapolis.Square > square).ToList();
+            return _megapolis.Where(megapolis => megapolis.Square >= square).ToList();
         }
     }
 }

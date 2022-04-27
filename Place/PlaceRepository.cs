@@ -52,12 +52,12 @@ namespace lab3.Place
 
         public List<Place> FilterDataByPopulation(int population)
         {
-            return _place.Where(place => place.Population > population).ToList();
+            return _place.Where(place => place.Population >= population).ToList();
         }
 
         public List<Place> FilterDataBySquare(int square)
         {
-            return _place.Where(place => place.Square > square).ToList();
+            return _place.Where(place => place.Square >= square).ToList();
         }
     }
 }

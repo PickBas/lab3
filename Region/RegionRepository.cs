@@ -52,12 +52,12 @@ namespace lab3.Region
 
         public List<Region> FilterDataByPopulation(int population)
         {
-            return _region.Where(region => region.Population > population).ToList();
+            return _region.Where(region => region.Population >= population).ToList();
         }
 
         public List<Region> FilterDataBySquare(int square)
         {
-            return _region.Where(region => region.Square > square).ToList();
+            return _region.Where(region => region.Square >= square).ToList();
         }
     }
 }
