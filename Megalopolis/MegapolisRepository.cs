@@ -2,7 +2,7 @@
 
 namespace lab3.Megalopolis
 {
-    public class MegapolisRepository : IRepository
+    public class MegapolisRepository : IRepository<Megapolis>
     {
         public void SortData()
         {
@@ -19,7 +19,7 @@ namespace lab3.Megalopolis
             throw new System.NotImplementedException();
         }
 
-        public List<object> FilterData()
+        public List<Megapolis> FilterData()
         {
             throw new System.NotImplementedException();
         }

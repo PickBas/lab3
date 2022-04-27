@@ -2,12 +2,12 @@
 
 namespace lab3
 {
-    public interface IRepository
+    public interface IRepository<T>
     {
         void SortData();
         void AddObject();
         void DeleteObject();
-        List<object> FilterData();
+        List<T> FilterData();
 
     }
 }

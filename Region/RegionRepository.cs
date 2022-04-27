@@ -2,7 +2,7 @@
 
 namespace lab3.Region
 {
-    public class RegionRepository : IRepository
+    public class RegionRepository : IRepository<Region>
     {
         public void SortData()
         {
@@ -19,7 +19,7 @@ namespace lab3.Region
             throw new System.NotImplementedException();
         }
 
-        public List<object> FilterData()
+        public List<Region> FilterData()
         {
             throw new System.NotImplementedException();
         }
