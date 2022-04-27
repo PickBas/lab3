@@ -48,12 +48,12 @@ namespace lab3.City
         public void AddObject(City obj)
         {
             _city.Add(obj);
-            Log.Info("CityRepository: Added city with " + obj + ".");
+            Log.Info("CityRepository: Added city with " + obj);
         }
 
         public void DeleteObject(int id)
         {
-            Log.Info("CityRepository: Removed city with " + _city[id] + ".");
+            Log.Info("CityRepository: Removed city with " + _city[id]);
             _city.RemoveAt(id);
         }
 
@@ -65,7 +65,7 @@ namespace lab3.City
 
         public List<City> FilterDataBySquare(int square)
         {
-            Log.Info("CityRepository: Filtered data by population >= " + square);
+            Log.Info("CityRepository: Filtered data by square >= " + square);
             return _city.Where(city => city.Square >= square).ToList();
         }
     }
