@@ -24,9 +24,20 @@ namespace lab3.Region
             _region = _region.OrderBy(o => o.Population).ToList();
         }
 
+        public void SortDataByPopulationDescending()
+        {
+            _region = _region.OrderByDescending(o => o.Population).ToList();
+
+        }
+
         public void SortDataBySquare()
         {
             _region = _region.OrderBy(o => o.Square).ToList();
+        }
+
+        public void SortDataBySquareDescending()
+        {
+            _region = _region.OrderByDescending(o => o.Square).ToList();
         }
 
         public void AddObject(Region obj)

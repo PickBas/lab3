@@ -24,9 +24,20 @@ namespace lab3.Place
             _place = _place.OrderBy(o => o.Population).ToList();
         }
 
+        public void SortDataByPopulationDescending()
+        {
+            _place = _place.OrderByDescending(o => o.Population).ToList();
+        }
+
         public void SortDataBySquare()
         {
             _place = _place.OrderBy(o => o.Square).ToList();
+        }
+
+        public void SortDataBySquareDescending()
+        {
+            _place = _place.OrderByDescending(o => o.Square).ToList();
+
         }
 
         public void AddObject(Place obj)

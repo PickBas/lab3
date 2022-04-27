@@ -32,6 +32,11 @@ namespace lab3.City
         {
             _city = _city.OrderBy(o => o.Square).ToList();
         }
+        
+        public void SortDataBySquareDescending()
+        {
+            _city = _city.OrderByDescending(o => o.Square).ToList();
+        }
 
         public void AddObject(City obj)
         {

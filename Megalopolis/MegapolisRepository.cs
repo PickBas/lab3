@@ -24,9 +24,21 @@ namespace lab3.Megalopolis
             _megapolis = _megapolis.OrderBy(o => o.Population).ToList();
         }
 
+        public void SortDataByPopulationDescending()
+        {
+            _megapolis = _megapolis.OrderByDescending(o => o.Population).ToList();
+
+        }
+
         public void SortDataBySquare()
         {
             _megapolis = _megapolis.OrderBy(o => o.Square).ToList();
+        }
+
+        public void SortDataBySquareDescending()
+        {
+            _megapolis = _megapolis.OrderByDescending(o => o.Square).ToList();
+
         }
 
         public void AddObject(Megapolis obj)
