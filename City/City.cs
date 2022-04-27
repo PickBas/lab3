@@ -6,6 +6,13 @@
         private int _population;
         private int _square;
 
+        public City()
+        {
+            _name = "Unknown";
+            _population = 0;
+            _square = 0;
+        }
+
         public string Name
         {
             get => _name;
