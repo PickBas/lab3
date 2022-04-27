@@ -1,27 +1,52 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace lab3.Place
 {
     public class PlaceRepository : IRepository<Place>
     {
-        public void SortData()
+        private List<Place> _place;
+
+        public List<Place> Place => _place;
+
+        public PlaceRepository()
         {
-            throw new System.NotImplementedException();
+            _place = new List<Place>();
+        }
+        
+        public PlaceRepository(List<Place> place)
+        {
+            _place = place;
         }
 
-        public void AddObject()
+        public void SortDataByPopulation()
         {
-            throw new System.NotImplementedException();
+            _place = _place.OrderBy(o => o.Population).ToList();
         }
 
-        public void DeleteObject()
+        public void SortDataBySquare()
         {
-            throw new System.NotImplementedException();
+            _place = _place.OrderBy(o => o.Square).ToList();
         }
 
-        public List<Place> FilterData()
+        public void AddObject(Place obj)
         {
-            throw new System.NotImplementedException();
+            _place.Add(obj);
+        }
+
+        public void DeleteObject(int id)
+        {
+            _place.RemoveAt(id);
+        }
+
+        public List<Place> FilterDataByPopulation(int population)
+        {
+            return _place.Where(place => place.Population > population).ToList();
+        }
+
+        public List<Place> FilterDataBySquare(int square)
+        {
+            return _place.Where(place => place.Square > square).ToList();
         }
     }
 }

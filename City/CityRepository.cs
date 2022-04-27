@@ -7,6 +7,8 @@ namespace lab3.City
     {
         private List<City> _city;
 
+        public List<City> City => _city;
+
         public CityRepository()
         {
             _city = new List<City>();
@@ -20,6 +22,10 @@ namespace lab3.City
         public void SortDataByPopulation()
         {
             _city = _city.OrderBy(o => o.Population).ToList();
+        }
+        public void SortDataByPopulationDescending()
+        {
+            _city = _city.OrderByDescending(o => o.Population).ToList();
         }
 
         public void SortDataBySquare()

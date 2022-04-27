@@ -13,6 +13,13 @@
             _square = 0;
         }
 
+        public City(string name, int population, int square)
+        {
+            _name = name;
+            _population = population;
+            _square = square;
+        }
+
         public string Name
         {
             get => _name;
