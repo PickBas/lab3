@@ -26,6 +26,11 @@
 
         public int Square => _square;
 
+        public override string ToString()
+        {
+            return "name: " + _name + ", population: " + _population + ", square: " + _square;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is City city
