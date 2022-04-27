@@ -1,5 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using CsvHelper;
+using Newtonsoft.Json;
+using ServiceStack.Text;
 
 namespace lab3.City
 {
@@ -8,65 +13,116 @@ namespace lab3.City
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         
-        private List<City> _city;
+        private List<City> _cities;
 
-        public List<City> City => _city;
+        public List<City> Cities => _cities;
 
         public CityRepository()
         {
-            _city = new List<City>();
+            _cities = new List<City>();
         }
-        
-        public CityRepository(List<City> city)
+
+        public CityRepository(List<City> cities)
         {
-            _city = city;
+            _cities = cities;
+        }
+
+        public CityRepository(string filePath)
+        {
+            var csvConfig = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.CurrentCulture)
+            {
+                HasHeaderRecord = false,
+                Delimiter = ","
+            };
+            StreamReader reader = new StreamReader(filePath);
+            _cities = new List<City>();
+            using (var csvReader = new CsvHelper.CsvReader(reader, csvConfig))
+            {
+                csvReader.Read();
+                while (csvReader.Read())
+                {
+                    csvReader.TryGetField<string>(0, out var currentName);
+                    csvReader.TryGetField<string>(1, out var currentPopulationStr);
+                    csvReader.TryGetField<string>(1, out var currentSquareStr);
+                    var currentPopulation = int.Parse(currentPopulationStr);
+                    var currentSquare = int.Parse(currentSquareStr);
+                    _cities.Add(new City(currentName, currentPopulation, currentSquare));
+                }
+            }
+            reader.Close();
         }
 
         public void SortDataByPopulation()
         {
-            _city = _city.OrderBy(o => o.Population).ToList();
+            _cities = _cities.OrderBy(o => o.Population).ToList();
             Log.Info("CityRepository: Sorted data by population");
         }
         public void SortDataByPopulationDescending()
         {
-            _city = _city.OrderByDescending(o => o.Population).ToList();
+            _cities = _cities.OrderByDescending(o => o.Population).ToList();
             Log.Info("CityRepository: Sorted data by population (descending)");
         }
 
         public void SortDataBySquare()
         {
-            _city = _city.OrderBy(o => o.Square).ToList();
+            _cities = _cities.OrderBy(o => o.Square).ToList();
             Log.Info("CityRepository: Sorted data by square");
         }
         
         public void SortDataBySquareDescending()
         {
-            _city = _city.OrderByDescending(o => o.Square).ToList();
+            _cities = _cities.OrderByDescending(o => o.Square).ToList();
             Log.Info("CityRepository: Sorted data by square (descending)");
         }
 
         public void AddObject(City obj)
         {
-            _city.Add(obj);
+            _cities.Add(obj);
             Log.Info("CityRepository: Added city with " + obj);
         }
 
         public void DeleteObject(int id)
         {
-            Log.Info("CityRepository: Removed city with " + _city[id]);
-            _city.RemoveAt(id);
+            Log.Info("CityRepository: Removed city with " + _cities[id]);
+            _cities.RemoveAt(id);
         }
 
         public List<City> FilterDataByPopulation(int population)
         {
             Log.Info("CityRepository: Filtered data by population >= " + population);
-            return _city.Where(city => city.Population >= population).ToList();
+            return _cities.Where(city => city.Population >= population).ToList();
         }
 
         public List<City> FilterDataBySquare(int square)
         {
             Log.Info("CityRepository: Filtered data by square >= " + square);
-            return _city.Where(city => city.Square >= square).ToList();
+            return _cities.Where(city => city.Square >= square).ToList();
+        }
+
+        public List<City> GetData()
+        {
+            return Cities;
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(_cities);
+        }
+
+        public string ToCsv()
+        {
+            return CsvSerializer.SerializeToCsv(_cities);
+        }
+
+        public string ToXml()
+        {
+            System.Xml.Serialization.XmlSerializer xmlSerializer = new System
+                .Xml.Serialization.XmlSerializer(_cities.GetType());
+            using(StringWriter textWriter = new StringWriter())
+            {
+                xmlSerializer.Serialize(textWriter, _cities);
+                return textWriter.ToString();
+            }
         }
     }
 }

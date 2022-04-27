@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Globalization;
+using Newtonsoft.Json;
+using ServiceStack.Text;
 
 namespace lab3.Place
 {
@@ -20,6 +24,31 @@ namespace lab3.Place
         public PlaceRepository(List<Place> place)
         {
             _place = place;
+        }
+        
+        public PlaceRepository(string filePath)
+        {
+            var csvConfig = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.CurrentCulture)
+            {
+                HasHeaderRecord = false,
+                Delimiter = ","
+            };
+            StreamReader reader = new StreamReader(filePath);
+            _place = new List<Place>();
+            using (var csvReader = new CsvHelper.CsvReader(reader, csvConfig))
+            {
+                csvReader.Read();
+                while (csvReader.Read())
+                {
+                    csvReader.TryGetField<string>(0, out var currentName);
+                    csvReader.TryGetField<string>(1, out var currentPopulationStr);
+                    csvReader.TryGetField<string>(1, out var currentSquareStr);
+                    var currentPopulation = int.Parse(currentPopulationStr);
+                    var currentSquare = int.Parse(currentSquareStr);
+                    _place.Add(new Place(currentName, currentPopulation, currentSquare));
+                }
+            }
+            reader.Close();
         }
 
         public void SortDataByPopulation()
@@ -68,6 +97,32 @@ namespace lab3.Place
         {
             Log.Info("PlaceRepository: Filtered data by square >= " + square);
             return _place.Where(place => place.Square >= square).ToList();
+        }
+
+        public List<Place> GetData()
+        {
+            return Place;
+        }
+        
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(_place);
+        }
+
+        public string ToCsv()
+        {
+            return CsvSerializer.SerializeToCsv(_place);
+        }
+
+        public string ToXml()
+        {
+            System.Xml.Serialization.XmlSerializer xmlSerializer = new System
+                .Xml.Serialization.XmlSerializer(_place.GetType());
+            using(StringWriter textWriter = new StringWriter())
+            {
+                xmlSerializer.Serialize(textWriter, _place);
+                return textWriter.ToString();
+            }
         }
     }
 }

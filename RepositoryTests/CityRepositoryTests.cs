@@ -33,28 +33,28 @@ namespace RepositoryTests
         public void SortingByPopulationTest()
         {
             _repository.SortDataByPopulation();
-            Assert.AreEqual(_voronezh, _repository.City[0]);
+            Assert.AreEqual(_voronezh, _repository.Cities[0]);
         }
         
         [TestMethod]
         public void SortingByPopulationDescendingTest()
         {
             _repository.SortDataByPopulationDescending();
-            Assert.AreEqual(_new_york, _repository.City[0]);
+            Assert.AreEqual(_new_york, _repository.Cities[0]);
         }
         
         [TestMethod]
         public void SortingBySquareTest()
         {
             _repository.SortDataBySquare();
-            Assert.AreEqual(_voronezh, _repository.City[0]);
+            Assert.AreEqual(_voronezh, _repository.Cities[0]);
         }
         
         [TestMethod]
         public void SortingBySquareDescendingTest()
         {
             _repository.SortDataBySquareDescending();
-            Assert.AreEqual(_new_york, _repository.City[0]);
+            Assert.AreEqual(_new_york, _repository.Cities[0]);
         }
 
         [TestMethod]
@@ -62,15 +62,15 @@ namespace RepositoryTests
         {
             City dubai = new City("Dubai", 70000, 500);
             _repository.AddObject(dubai);
-            Assert.IsTrue(_repository.City.Contains(dubai));   
+            Assert.IsTrue(_repository.Cities.Contains(dubai));   
         }
 
         [TestMethod]
         public void DeleteObjectTest()
         {
-            Assert.IsTrue(_repository.City.Contains(_moscow));
+            Assert.IsTrue(_repository.Cities.Contains(_moscow));
             _repository.DeleteObject(0);
-            Assert.IsFalse(_repository.City.Contains(_moscow));
+            Assert.IsFalse(_repository.Cities.Contains(_moscow));
         }
     
         [TestMethod]

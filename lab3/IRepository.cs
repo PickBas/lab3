@@ -12,6 +12,10 @@ namespace lab3
         void DeleteObject(int id);
         List<T> FilterDataByPopulation(int population);
         List<T> FilterDataBySquare(int square);
+        List<T> GetData();
+        string ToJson();
+        string ToCsv();
+        string ToXml();
 
     }
 }
