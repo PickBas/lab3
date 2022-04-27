@@ -55,6 +55,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IRepository.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Megalopolis\Megapolis.cs" />
     <Compile Include="Megalopolis\MegapolisRepository.cs" />
     <Compile Include="Place\Place.cs" />

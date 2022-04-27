@@ -3,8 +3,8 @@
     public class Place
     {
         private string _name;
-        private int hoursToDrive;
-        private int _totalLikes;
+        private int _population;
+        private int _square;
 
         public string Name
         {
@@ -12,16 +12,16 @@
             set => _name = value;
         }
 
-        public int HoursToDrive
+        public int Population
         {
-            get => hoursToDrive;
-            set => hoursToDrive = value;
+            get => _population;
+            set => _population = value;
         }
 
-        public int TotalLikes
+        public int Square
         {
-            get => _totalLikes;
-            set => _totalLikes = value;
+            get => _square;
+            set => _square = value;
         }
     }
 }
