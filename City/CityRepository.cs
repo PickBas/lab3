@@ -1,7 +1,27 @@
-﻿namespace lab3.City
+﻿using System.Collections.Generic;
+
+namespace lab3.City
 {
-    public class CityRepository
+    public class CityRepository : IRepository
     {
-        
+        public void SortData()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddObject()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteObject()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<object> FilterData()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
