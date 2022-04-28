@@ -12,7 +12,7 @@ namespace lab3.FileWork.JSON
         {
         }
 
-        public List<T> GetStudentData(string filePath)
+        public List<T> GetData(string filePath)
         {
             StreamReader reader = new StreamReader(filePath);
             string json = reader.ReadToEnd();

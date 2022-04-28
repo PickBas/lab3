@@ -49,6 +49,7 @@ namespace lab3
             this.openFileBtn.TabIndex = 0;
             this.openFileBtn.Text = "Open file";
             this.openFileBtn.UseVisualStyleBackColor = true;
+            this.openFileBtn.Click += new System.EventHandler(this.openFileBtn_Click);
             // 
             // saveFileBtn
             // 

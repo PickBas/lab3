@@ -4,7 +4,7 @@ namespace lab3.FileWork.Services
 {
     public interface IReader <T>
     {
-        List<T> GetStudentData(string filePath);
+        List<T> GetData(string filePath);
 
     }
 }

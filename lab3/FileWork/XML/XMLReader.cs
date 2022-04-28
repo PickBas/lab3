@@ -12,7 +12,7 @@ namespace lab3.FileWork.XML
             
         }
         
-        public List<T> GetStudentData(string filePath)
+        public List<T> GetData(string filePath)
         {
             XmlSerializer ser = new XmlSerializer(typeof(List<T>));
             List<T> entities = new List<T>();

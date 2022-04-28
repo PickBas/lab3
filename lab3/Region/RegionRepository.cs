@@ -2,6 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Globalization;
+using lab3.FileWork.JSON;
+using lab3.FileWork.Services;
+using lab3.FileWork.XML;
 using Newtonsoft.Json;
 using ServiceStack.Text;
 
@@ -25,7 +28,26 @@ namespace lab3.Region
             _region = region;
         }
         
-        public RegionRepository(string filePath)
+        public RegionRepository(string filePath, string extension)
+        {
+            IReader<Region> reader;
+            switch (extension)
+            {
+                case string a when a.Contains("json"):
+                    reader = new JsonReaderFile<Region>();
+                    _region = reader.GetData(filePath);
+                    break;
+                case string a when a.Contains("xml"):
+                    reader = new XMLReader<Region>();
+                    _region = reader.GetData(filePath);
+                    break;
+                case string a when a.Contains("csv"):
+                    RepositoryFromCsv(filePath);
+                    break;
+            }
+        }
+        
+        private void RepositoryFromCsv(string filePath)
         {
             var csvConfig = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.CurrentCulture)
             {

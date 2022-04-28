@@ -2,6 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Globalization;
+using lab3.FileWork.JSON;
+using lab3.FileWork.Services;
+using lab3.FileWork.XML;
 using Newtonsoft.Json;
 using ServiceStack.Text;
 
@@ -26,7 +29,26 @@ namespace lab3.Place
             _place = place;
         }
         
-        public PlaceRepository(string filePath)
+        public PlaceRepository(string filePath, string extension)
+        {
+            IReader<Place> reader;
+            switch (extension)
+            {
+                case string a when a.Contains("json"):
+                    reader = new JsonReaderFile<Place>();
+                    _place = reader.GetData(filePath);
+                    break;
+                case string a when a.Contains("xml"):
+                    reader = new XMLReader<Place>();
+                    _place = reader.GetData(filePath);
+                    break;
+                case string a when a.Contains("csv"):
+                    RepositoryFromCsv(filePath);
+                    break;
+            }
+        }
+        
+        private void RepositoryFromCsv(string filePath)
         {
             var csvConfig = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.CurrentCulture)
             {
