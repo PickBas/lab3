@@ -63,7 +63,7 @@ namespace lab3.Region
                 {
                     csvReader.TryGetField<string>(0, out var currentName);
                     csvReader.TryGetField<string>(1, out var currentPopulationStr);
-                    csvReader.TryGetField<string>(1, out var currentSquareStr);
+                    csvReader.TryGetField<string>(2, out var currentSquareStr);
                     var currentPopulation = int.Parse(currentPopulationStr);
                     var currentSquare = int.Parse(currentSquareStr);
                     _region.Add(new Region(currentName, currentPopulation, currentSquare));
@@ -139,7 +139,7 @@ namespace lab3.Region
         {
             System.Xml.Serialization.XmlSerializer xmlSerializer = new System
                 .Xml.Serialization.XmlSerializer(_region.GetType());
-            using(StringWriter textWriter = new StringWriter())
+            using(StringWriter textWriter = new Utf8StringWriter())
             {
                 xmlSerializer.Serialize(textWriter, _region);
                 return textWriter.ToString();

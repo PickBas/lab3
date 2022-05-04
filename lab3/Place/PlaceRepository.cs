@@ -64,7 +64,7 @@ namespace lab3.Place
                 {
                     csvReader.TryGetField<string>(0, out var currentName);
                     csvReader.TryGetField<string>(1, out var currentPopulationStr);
-                    csvReader.TryGetField<string>(1, out var currentSquareStr);
+                    csvReader.TryGetField<string>(2, out var currentSquareStr);
                     var currentPopulation = int.Parse(currentPopulationStr);
                     var currentSquare = int.Parse(currentSquareStr);
                     _place.Add(new Place(currentName, currentPopulation, currentSquare));
@@ -140,7 +140,7 @@ namespace lab3.Place
         {
             System.Xml.Serialization.XmlSerializer xmlSerializer = new System
                 .Xml.Serialization.XmlSerializer(_place.GetType());
-            using(StringWriter textWriter = new StringWriter())
+            using(StringWriter textWriter = new Utf8StringWriter())
             {
                 xmlSerializer.Serialize(textWriter, _place);
                 return textWriter.ToString();

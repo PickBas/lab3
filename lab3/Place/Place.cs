@@ -2,9 +2,9 @@
 {
     public class Place
     {
-        private readonly string _name;
-        private readonly int _population;
-        private readonly int _square;
+        private string _name;
+        private int _population;
+        private int _square;
 
         public Place()
         {
@@ -20,12 +20,24 @@
             _square = square;
         }
 
-        public string Name => _name;
+        public string Name
+        {
+            get => _name;
+            set => _name = value;
+        }
 
-        public int Population => _population;
+        public int Population
+        {
+            get => _population;
+            set => _population = value;
+        }
 
-        public int Square => _square;
-        
+        public int Square
+        {
+            get => _square;
+            set => _square = value;
+        }
+
         public override string ToString()
         {
             return "name: " + _name + ", population: " + _population + ", square: " + _square;
