@@ -92,6 +92,7 @@
     <Compile Include="FileWork\JSON\JsonReaderFile.cs" />
     <Compile Include="FileWork\JSON\JsonWriter.cs" />
     <Compile Include="FileWork\Services\Reader.cs" />
+    <Compile Include="FileWork\Services\Utf8StringWriter.cs" />
     <Compile Include="FileWork\Services\Writer.cs" />
     <Compile Include="FileWork\XML\XMLReader.cs" />
     <Compile Include="FileWork\XML\XMLWriter.cs" />

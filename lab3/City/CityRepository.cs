@@ -56,6 +56,7 @@ namespace lab3.City
                 HasHeaderRecord = false,
                 Delimiter = ","
             };
+            
             StreamReader reader = new StreamReader(filePath);
             _cities = new List<City>();
             using (var csvReader = new CsvHelper.CsvReader(reader, csvConfig))
@@ -65,7 +66,7 @@ namespace lab3.City
                 {
                     csvReader.TryGetField<string>(0, out var currentName);
                     csvReader.TryGetField<string>(1, out var currentPopulationStr);
-                    csvReader.TryGetField<string>(1, out var currentSquareStr);
+                    csvReader.TryGetField<string>(2, out var currentSquareStr);
                     var currentPopulation = int.Parse(currentPopulationStr);
                     var currentSquare = int.Parse(currentSquareStr);
                     _cities.Add(new City(currentName, currentPopulation, currentSquare));
@@ -140,7 +141,7 @@ namespace lab3.City
         {
             System.Xml.Serialization.XmlSerializer xmlSerializer = new System
                 .Xml.Serialization.XmlSerializer(_cities.GetType());
-            using(StringWriter textWriter = new StringWriter())
+            using(StringWriter textWriter = new Utf8StringWriter())
             {
                 xmlSerializer.Serialize(textWriter, _cities);
                 return textWriter.ToString();
