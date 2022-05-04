@@ -49,11 +49,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CityRepositoryTests.cs" />
-    <Compile Include="MegapolisRepositoryTests.cs" />
-    <Compile Include="PlaceRepositoryTests.cs" />
+    <Compile Include="FileWork\CityFileWorkTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegionRpositoryTests.cs" />
+    <Compile Include="Repo\CityRepositoryTests.cs" />
+    <Compile Include="Repo\MegapolisRepositoryTests.cs" />
+    <Compile Include="Repo\PlaceRepositoryTests.cs" />
+    <Compile Include="Repo\RegionRpositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
