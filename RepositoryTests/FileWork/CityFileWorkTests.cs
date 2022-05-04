@@ -1,6 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using lab3.City;
+using lab3.FileWork.CSV;
+using lab3.FileWork.JSON;
+using lab3.FileWork.Services;
+using lab3.FileWork.XML;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RepositoryTests.FileWork
@@ -36,9 +41,12 @@ namespace RepositoryTests.FileWork
             string json = _repository.ToJson();
             string csv = _repository.ToCsv();
             string xml = _repository.ToXml();
-            Console.WriteLine(json);
-            Console.WriteLine(csv);
-            Console.WriteLine(xml);
+            IWriter<City> writerJson = new JsonWriter<City>();
+            IWriter<City> writerXml = new XMLWriter<City>();
+            IWriter<City> writerCsv = new CSVWriter<City>();
+            writerJson.Write("../../FileWork/fixtures/test_json_out.json", _repository);
+            writerXml.Write("../../FileWork/fixtures/test_xml_out.json", _repository);
+            writerCsv.Write("../../FileWork/fixtures/test_csv_out.json", _repository);
             Assert.IsTrue(true);
         }
 

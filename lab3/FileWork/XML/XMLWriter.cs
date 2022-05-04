@@ -11,7 +11,7 @@ namespace lab3.FileWork.XML
         
         public void Write(string filePath, IRepository<T> repository)
         {
-            File.WriteAllText(filePath, repository.ToCsv());
+            File.WriteAllText(filePath, repository.ToXml());
         }
         
     }
