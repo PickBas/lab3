@@ -57,7 +57,26 @@ namespace lab3
 
         private void saveFileBtn_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            Form saveForm;
+            switch (_currentDataType)
+            {
+                case string b when b.Equals("City"):
+                    saveForm = new SaveDialog(_cityRepo);
+                    saveForm.Show();
+                    break;
+                case string b when b.Equals("Megapolis"):
+                    saveForm = new SaveDialog(_megapolisRepo);
+                    saveForm.Show();
+                    break;
+                case string b when b.Equals("Place"):
+                    saveForm = new SaveDialog(_placeRepo);
+                    saveForm.Show();
+                    break;
+                case string b when b.Equals("Region"):
+                    saveForm = new SaveDialog(_regionRepo);
+                    saveForm.Show();
+                    break;
+            }
         }
     }
 }
