@@ -51,7 +51,7 @@ namespace RepositoryTests.FileWork
             Assert.AreEqual(_voronezh.Name, entities[1].Name);
             Assert.AreEqual(_voronezh.Population, entities[1].Population);
             Assert.AreEqual(_voronezh.Square, entities[1].Square);
-
+            File.Delete(jsonFilePath);
         }
 
         [TestMethod]
@@ -68,6 +68,7 @@ namespace RepositoryTests.FileWork
             Assert.AreEqual(_voronezh.Name, entities[1].Name);
             Assert.AreEqual(_voronezh.Population, entities[1].Population);
             Assert.AreEqual(_voronezh.Square, entities[1].Square);
+            File.Delete(xmlFilePath);
         }
 
         [TestMethod]
@@ -83,6 +84,7 @@ namespace RepositoryTests.FileWork
             Assert.AreEqual(_voronezh.Name, repository.Cities[1].Name);
             Assert.AreEqual(_voronezh.Population, repository.Cities[1].Population);
             Assert.AreEqual(_voronezh.Square, repository.Cities[1].Square);
+            File.Delete(csvFilePath);
         }
     }
 }
