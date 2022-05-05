@@ -4,7 +4,7 @@ using lab3.FileWork.CSV;
 using lab3.FileWork.JSON;
 using lab3.FileWork.Services;
 using lab3.FileWork.XML;
-using lab3.Megalopolis;
+using lab3.Megapolis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RepositoryTests.FileWork

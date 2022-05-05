@@ -5,7 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using lab3.City;
 using lab3.ManageForms;
-using lab3.Megalopolis;
+using lab3.Megapolis;
 using lab3.Place;
 using lab3.Region;
 
@@ -17,7 +17,7 @@ namespace lab3
             (System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         private string _currentDataType;
         private IRepository<City.City> _cityRepo; 
-        private IRepository<Megalopolis.Megapolis> _megapolisRepo; 
+        private IRepository<Megapolis.Megapolis> _megapolisRepo; 
         private IRepository<Place.Place> _placeRepo; 
         private IRepository<Region.Region> _regionRepo; 
 
@@ -143,7 +143,7 @@ namespace lab3
                     saveForm.Show();
                     break;
                 case string b when b.Equals("Megapolis"):
-                    saveForm = new SaveDialog<Megapolis>(_megapolisRepo);
+                    saveForm = new SaveDialog<Megapolis.Megapolis>(_megapolisRepo);
                     saveForm.Show();
                     break;
                 case string b when b.Equals("Place"):
@@ -177,7 +177,7 @@ namespace lab3
                     }
                     break;
                 case string a when a.Equals("Megapolis"):
-                    AddDialog<Megapolis> addDialogMegapolis = new AddDialog<Megapolis>(_megapolisRepo);
+                    AddDialog<Megapolis.Megapolis> addDialogMegapolis = new AddDialog<Megapolis.Megapolis>(_megapolisRepo);
                     if (addDialogMegapolis.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();
@@ -213,7 +213,7 @@ namespace lab3
                     }
                     break;
                 case string a when a.Equals("Megapolis"):
-                    DeleteDialog<Megapolis> addDialogMegapolis = new DeleteDialog<Megapolis>(_megapolisRepo);
+                    DeleteDialog<Megapolis.Megapolis> addDialogMegapolis = new DeleteDialog<Megapolis.Megapolis>(_megapolisRepo);
                     if (addDialogMegapolis.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();

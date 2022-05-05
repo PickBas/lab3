@@ -124,8 +124,8 @@
     <Compile Include="ManageForms\FilterDialog.Designer.cs">
       <DependentUpon>FilterDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Megalopolis\Megapolis.cs" />
-    <Compile Include="Megalopolis\MegapolisRepository.cs" />
+    <Compile Include="Megapolis\Megapolis.cs" />
+    <Compile Include="Megapolis\MegapolisRepository.cs" />
     <Compile Include="Place\Place.cs" />
     <Compile Include="Place\PlaceRepository.cs" />
     <Compile Include="Program.cs" />

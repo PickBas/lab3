@@ -8,7 +8,7 @@ using lab3.FileWork.XML;
 using Newtonsoft.Json;
 using ServiceStack.Text;
 
-namespace lab3.Megalopolis
+namespace lab3.Megapolis
 {
     public class MegapolisRepository : IRepository<Megapolis>
     {

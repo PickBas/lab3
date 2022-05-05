@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using lab3.Megalopolis;
+using lab3.Megapolis;
 
 namespace RepositoryTests
 {

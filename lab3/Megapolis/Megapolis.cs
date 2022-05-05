@@ -1,4 +1,4 @@
-﻿namespace lab3.Megalopolis
+﻿namespace lab3.Megapolis
 {
     public class Megapolis
     {
