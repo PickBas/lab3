@@ -32,65 +32,73 @@ namespace lab3
 
         private void UpdateData()
         {
+            FillData();
+            dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[1].Width = 200;
+            dataGridView1.Columns[2].Width = 145;
+            dataGridView1.Columns[3].Width = 140;
+        }
+
+        private void FillData()
+        {
             DataTable table = new DataTable();
             table.Columns.Add("#");
             table.Columns.Add("Name");
             table.Columns.Add("Population");
             table.Columns.Add("Square");
-            Dictionary<string, string> data = new Dictionary<string, string>();
             if (_currentDataType == "City")
             {
                 for (int i = 1; i <= _cityRepo.GetData().Count; ++i)
                 {
                     DataRow dr = table.NewRow();
                     dr["#"] = (i).ToString();
-                    dr["Name"] = _cityRepo.GetData()[i-1].Name;
-                    dr["Population"] = _cityRepo.GetData()[i-1].Population;
-                    dr["Square"] = _cityRepo.GetData()[i-1].Square;
+                    dr["Name"] = _cityRepo.GetData()[i - 1].Name;
+                    dr["Population"] = _cityRepo.GetData()[i - 1].Population;
+                    dr["Square"] = _cityRepo.GetData()[i - 1].Square;
                     table.Rows.Add(dr);
                 }
             }
+
             if (_currentDataType == "Megapolis")
             {
                 for (int i = 1; i <= _megapolisRepo.GetData().Count; ++i)
                 {
                     DataRow dr = table.NewRow();
                     dr["#"] = (i).ToString();
-                    dr["Name"] = _megapolisRepo.GetData()[i-1].Name;
-                    dr["Population"] = _megapolisRepo.GetData()[i-1].Population;
-                    dr["Square"] = _megapolisRepo.GetData()[i-1].Square;
+                    dr["Name"] = _megapolisRepo.GetData()[i - 1].Name;
+                    dr["Population"] = _megapolisRepo.GetData()[i - 1].Population;
+                    dr["Square"] = _megapolisRepo.GetData()[i - 1].Square;
                     table.Rows.Add(dr);
                 }
             }
+
             if (_currentDataType == "Place")
             {
                 for (int i = 1; i <= _placeRepo.GetData().Count; ++i)
                 {
                     DataRow dr = table.NewRow();
                     dr["#"] = (i).ToString();
-                    dr["Name"] = _placeRepo.GetData()[i-1].Name;
-                    dr["Population"] = _placeRepo.GetData()[i-1].Population;
-                    dr["Square"] = _placeRepo.GetData()[i-1].Square;
+                    dr["Name"] = _placeRepo.GetData()[i - 1].Name;
+                    dr["Population"] = _placeRepo.GetData()[i - 1].Population;
+                    dr["Square"] = _placeRepo.GetData()[i - 1].Square;
                     table.Rows.Add(dr);
                 }
             }
+
             if (_currentDataType == "Region")
             {
                 for (int i = 1; i <= _regionRepo.GetData().Count; ++i)
                 {
                     DataRow dr = table.NewRow();
                     dr["#"] = (i).ToString();
-                    dr["Name"] = _regionRepo.GetData()[i-1].Name;
-                    dr["Population"] = _regionRepo.GetData()[i-1].Population;
-                    dr["Square"] = _regionRepo.GetData()[i-1].Square;
+                    dr["Name"] = _regionRepo.GetData()[i - 1].Name;
+                    dr["Population"] = _regionRepo.GetData()[i - 1].Population;
+                    dr["Square"] = _regionRepo.GetData()[i - 1].Square;
                     table.Rows.Add(dr);
                 }
             }
+
             dataGridView1.DataSource = table;
-            dataGridView1.Columns[0].Width = 30;
-            dataGridView1.Columns[1].Width = 200;
-            dataGridView1.Columns[2].Width = 145;
-            dataGridView1.Columns[3].Width = 140;
         }
 
         private void openFileBtn_Click(object sender, EventArgs e)
@@ -220,6 +228,35 @@ namespace lab3
                     }
                     break;
             }
+        }
+
+        private void SortPopulationData()
+        {
+            switch (_currentDataType) 
+            {
+                case string a when a.Equals("City"):
+                    _cityRepo.SortDataByPopulationDescending();
+                    FillData();
+                    break;
+                case string a when a.Equals("Megapolis"):
+                    _megapolisRepo.SortDataByPopulationDescending();
+                    FillData();
+                    break;
+                case string a when a.Equals("Place"):
+                    _placeRepo.SortDataByPopulationDescending();
+                    FillData();
+                    break; 
+                case string a when a.Equals("Region"):
+                    _regionRepo.SortDataByPopulationDescending();
+                    FillData();
+                    break;
+            }
+        }
+
+        private void filterBtn_Click(object sender, EventArgs e)
+        {
+            FilterDialog filterDialog = new FilterDialog(dataGridView1);
+            filterDialog.Show();
         }
     }
 }

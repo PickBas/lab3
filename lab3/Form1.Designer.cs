@@ -35,7 +35,6 @@ namespace lab3
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.addItemBtn = new System.Windows.Forms.Button();
             this.deleteItemBtn = new System.Windows.Forms.Button();
-            this.sortBtn = new System.Windows.Forms.Button();
             this.filterBtn = new System.Windows.Forms.Button();
             this.entityChoice = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize) (this.dataGridView1)).BeginInit();
@@ -87,7 +86,7 @@ namespace lab3
             this.addItemBtn.Location = new System.Drawing.Point(82, 39);
             this.addItemBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addItemBtn.Name = "addItemBtn";
-            this.addItemBtn.Size = new System.Drawing.Size(106, 25);
+            this.addItemBtn.Size = new System.Drawing.Size(139, 25);
             this.addItemBtn.TabIndex = 4;
             this.addItemBtn.Text = "Add";
             this.addItemBtn.UseVisualStyleBackColor = true;
@@ -95,34 +94,25 @@ namespace lab3
             // 
             // deleteItemBtn
             // 
-            this.deleteItemBtn.Location = new System.Drawing.Point(195, 39);
+            this.deleteItemBtn.Location = new System.Drawing.Point(225, 39);
             this.deleteItemBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteItemBtn.Name = "deleteItemBtn";
-            this.deleteItemBtn.Size = new System.Drawing.Size(106, 25);
+            this.deleteItemBtn.Size = new System.Drawing.Size(151, 25);
             this.deleteItemBtn.TabIndex = 6;
             this.deleteItemBtn.Text = "Delete";
             this.deleteItemBtn.UseVisualStyleBackColor = true;
             this.deleteItemBtn.Click += new System.EventHandler(this.deleteItemBtn_Click);
             // 
-            // sortBtn
-            // 
-            this.sortBtn.Location = new System.Drawing.Point(308, 39);
-            this.sortBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.sortBtn.Name = "sortBtn";
-            this.sortBtn.Size = new System.Drawing.Size(106, 25);
-            this.sortBtn.TabIndex = 7;
-            this.sortBtn.Text = "Sort";
-            this.sortBtn.UseVisualStyleBackColor = true;
-            // 
             // filterBtn
             // 
-            this.filterBtn.Location = new System.Drawing.Point(422, 39);
+            this.filterBtn.Location = new System.Drawing.Point(380, 39);
             this.filterBtn.Margin = new System.Windows.Forms.Padding(2);
             this.filterBtn.Name = "filterBtn";
-            this.filterBtn.Size = new System.Drawing.Size(106, 25);
+            this.filterBtn.Size = new System.Drawing.Size(148, 25);
             this.filterBtn.TabIndex = 8;
             this.filterBtn.Text = "Filter";
             this.filterBtn.UseVisualStyleBackColor = true;
+            this.filterBtn.Click += new System.EventHandler(this.filterBtn_Click);
             // 
             // entityChoice
             // 
@@ -143,7 +133,6 @@ namespace lab3
             this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.entityChoice);
             this.Controls.Add(this.filterBtn);
-            this.Controls.Add(this.sortBtn);
             this.Controls.Add(this.deleteItemBtn);
             this.Controls.Add(this.addItemBtn);
             this.Controls.Add(this.dataGridView1);
@@ -159,7 +148,6 @@ namespace lab3
 
         private System.Windows.Forms.Button filterBtn;
         private System.Windows.Forms.Button deleteItemBtn;
-        private System.Windows.Forms.Button sortBtn;
         private System.Windows.Forms.ComboBox entityChoice;
 
         private System.Windows.Forms.Button addItemBtn;
