@@ -139,19 +139,19 @@ namespace lab3
             switch (_currentDataType)
             {
                 case string b when b.Equals("City"):
-                    saveForm = new SaveDialog(_cityRepo);
+                    saveForm = new SaveDialog<City.City>(_cityRepo);
                     saveForm.Show();
                     break;
                 case string b when b.Equals("Megapolis"):
-                    saveForm = new SaveDialog(_megapolisRepo);
+                    saveForm = new SaveDialog<Megapolis>(_megapolisRepo);
                     saveForm.Show();
                     break;
                 case string b when b.Equals("Place"):
-                    saveForm = new SaveDialog(_placeRepo);
+                    saveForm = new SaveDialog<Place.Place>(_placeRepo);
                     saveForm.Show();
                     break;
                 case string b when b.Equals("Region"):
-                    saveForm = new SaveDialog(_regionRepo);
+                    saveForm = new SaveDialog<Region.Region>(_regionRepo);
                     saveForm.Show();
                     break;
             }

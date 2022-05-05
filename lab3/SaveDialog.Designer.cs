@@ -2,7 +2,7 @@
 
 namespace lab3
 {
-    partial class SaveDialog
+    partial class SaveDialog <T>
     {
         /// <summary>
         /// Required designer variable.
@@ -38,9 +38,10 @@ namespace lab3
             // 
             // jsonSave
             // 
-            this.jsonSave.Location = new System.Drawing.Point(67, 86);
+            this.jsonSave.Location = new System.Drawing.Point(50, 70);
+            this.jsonSave.Margin = new System.Windows.Forms.Padding(2);
             this.jsonSave.Name = "jsonSave";
-            this.jsonSave.Size = new System.Drawing.Size(133, 87);
+            this.jsonSave.Size = new System.Drawing.Size(100, 71);
             this.jsonSave.TabIndex = 0;
             this.jsonSave.Text = "JSON";
             this.jsonSave.UseVisualStyleBackColor = true;
@@ -48,30 +49,35 @@ namespace lab3
             // 
             // xmlSave
             // 
-            this.xmlSave.Location = new System.Drawing.Point(206, 86);
+            this.xmlSave.Location = new System.Drawing.Point(154, 70);
+            this.xmlSave.Margin = new System.Windows.Forms.Padding(2);
             this.xmlSave.Name = "xmlSave";
-            this.xmlSave.Size = new System.Drawing.Size(133, 87);
+            this.xmlSave.Size = new System.Drawing.Size(100, 71);
             this.xmlSave.TabIndex = 1;
             this.xmlSave.Text = "XML";
             this.xmlSave.UseVisualStyleBackColor = true;
+            this.xmlSave.Click += new System.EventHandler(this.xmlSave_Click);
             // 
             // csvSave
             // 
-            this.csvSave.Location = new System.Drawing.Point(345, 86);
+            this.csvSave.Location = new System.Drawing.Point(259, 70);
+            this.csvSave.Margin = new System.Windows.Forms.Padding(2);
             this.csvSave.Name = "csvSave";
-            this.csvSave.Size = new System.Drawing.Size(133, 87);
+            this.csvSave.Size = new System.Drawing.Size(100, 71);
             this.csvSave.TabIndex = 2;
             this.csvSave.Text = "CSV";
             this.csvSave.UseVisualStyleBackColor = true;
+            this.csvSave.Click += new System.EventHandler(this.csvSave_Click);
             // 
             // SaveDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 251);
+            this.ClientSize = new System.Drawing.Size(428, 204);
             this.Controls.Add(this.csvSave);
             this.Controls.Add(this.xmlSave);
             this.Controls.Add(this.jsonSave);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SaveDialog";
             this.Text = "SaveDialog";
             this.ResumeLayout(false);

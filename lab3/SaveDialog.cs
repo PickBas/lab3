@@ -1,43 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
+using lab3.FileWork.CSV;
 using lab3.FileWork.JSON;
 using lab3.FileWork.Services;
+using lab3.FileWork.XML;
 using lab3.Megalopolis;
 
 namespace lab3
 {
-    public partial class SaveDialog : Form
+    public partial class SaveDialog<T> : Form
     {
-        private IRepository<City.City> _cityRepo; 
-        private IRepository<Megalopolis.Megapolis> _megapolisRepo; 
-        private IRepository<Place.Place> _placeRepo; 
-        private IRepository<Region.Region> _regionRepo; 
+        private IRepository<T> _repository;
 
-        public SaveDialog(
-            IRepository<City.City> cityRepo)
+        public SaveDialog(IRepository<T> repository)
         {
-            _cityRepo = cityRepo;
-            InitializeComponent();
-        }
-        
-        public SaveDialog(
-            IRepository<Megapolis> megapolisRepo)
-        {
-            _megapolisRepo = megapolisRepo;
-            InitializeComponent();
-        }
-        
-        public SaveDialog(
-            IRepository<Place.Place> placeRepo)
-        {
-            _placeRepo = placeRepo;
-            InitializeComponent();
-        }
-        
-        public SaveDialog(
-            IRepository<Region.Region> regionRepo)
-        {
-            _regionRepo = regionRepo;
+            _repository = repository;
             InitializeComponent();
         }
 
@@ -49,26 +26,50 @@ namespace lab3
                 return;
             }
             String fileName = saveFileDialog.FileName;
-            if (_cityRepo != null)
+            if (_repository != null)
             {
-                IWriter<City.City> writer = new JsonWriter<City.City>();
-                writer.Write(fileName, _cityRepo);
+                IWriter<T> writer = new JsonWriter<T>();
+                writer.Write(fileName, _repository);
             }
-            if (_megapolisRepo != null)
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void xmlSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
             {
-                IWriter<City.City> writer = new JsonWriter<City.City>();
-                writer.Write(fileName, _cityRepo); 
+                return;
             }
-            if (_placeRepo != null)
+            String fileName = saveFileDialog.FileName;
+            if (_repository != null)
             {
-                IWriter<City.City> writer = new JsonWriter<City.City>();
-                writer.Write(fileName, _cityRepo);
+                IWriter<T> writer = new XMLWriter<T>();
+                writer.Write(fileName, _repository);
             }
-            if (_regionRepo != null)
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void csvSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
             {
-                IWriter<City.City> writer = new JsonWriter<City.City>();
-                writer.Write(fileName, _cityRepo);
+                return;
             }
+            String fileName = saveFileDialog.FileName;
+            if (_repository != null)
+            {
+                IWriter<T> writer = new CSVWriter<T>();
+                writer.Write(fileName, _repository);
+            }
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }
