@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using lab3.Megapolis;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RepositoryTests
 {
@@ -8,19 +8,19 @@ namespace RepositoryTests
     public class MegapolisRepositoryTests
     {
         private MegapolisRepository _repository;
-        private Megapolis _moscow;
-        private Megapolis _voronezh;
-        private Megapolis _new_york;
-        private Megapolis _la;
+        private MegapolisEntity _moscow;
+        private MegapolisEntity _voronezh;
+        private MegapolisEntity _new_york;
+        private MegapolisEntity _la;
         
         [TestInitialize]
         public void SetUp()
         {
-            List<Megapolis> cities = new List<Megapolis>();
-            _moscow = new Megapolis("Moscow", 300, 14);
-            _voronezh = new Megapolis("Voronezh", 100, 3);
-            _new_york = new Megapolis("New York", 1000, 24);
-            _la = new Megapolis("LA", 500, 20);
+            List<MegapolisEntity> cities = new List<MegapolisEntity>();
+            _moscow = new MegapolisEntity("Moscow", 300, 14);
+            _voronezh = new MegapolisEntity("Voronezh", 100, 3);
+            _new_york = new MegapolisEntity("New York", 1000, 24);
+            _la = new MegapolisEntity("LA", 500, 20);
             cities.Add(_moscow);
             cities.Add(_voronezh);
             cities.Add(_new_york);
@@ -59,7 +59,7 @@ namespace RepositoryTests
         [TestMethod]
         public void AddObjectTest()
         {
-            Megapolis dubai = new Megapolis("Dubai", 70000, 500);
+            MegapolisEntity dubai = new MegapolisEntity("Dubai", 70000, 500);
             _repository.AddObject(dubai);
             Assert.IsTrue(_repository.Megapolis.Contains(dubai));   
         }
@@ -75,7 +75,7 @@ namespace RepositoryTests
         [TestMethod]
         public void FilterDataByPopulation()
         {
-            List<Megapolis> cities = _repository.FilterDataByPopulation(300);
+            List<MegapolisEntity> cities = _repository.FilterDataByPopulation(300);
             Assert.IsFalse(cities.Contains(_voronezh));
             Assert.IsTrue(cities.Contains(_moscow));
         }
@@ -83,7 +83,7 @@ namespace RepositoryTests
         [TestMethod]
         public void FilterDataBySquare()
         {
-            List<Megapolis> cities = _repository.FilterDataBySquare(14);
+            List<MegapolisEntity> cities = _repository.FilterDataBySquare(14);
             Assert.IsFalse(cities.Contains(_voronezh));
             Assert.IsTrue(cities.Contains(_moscow));
         }

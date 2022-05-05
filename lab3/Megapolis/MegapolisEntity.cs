@@ -1,21 +1,19 @@
-﻿using System.Xml.Serialization;
-
-namespace lab3.City
+﻿namespace lab3.Megapolis
 {
-    public class City
+    public class MegapolisEntity
     {
         private string _name;
         private int _population;
         private int _square;
 
-        public City()
+        public MegapolisEntity()
         {
             _name = "Unknown";
             _population = 0;
             _square = 0;
         }
 
-        public City(string name, int population, int square)
+        public MegapolisEntity(string name, int population, int square)
         {
             _name = name;
             _population = population;
@@ -44,13 +42,13 @@ namespace lab3.City
         {
             return "name: " + _name + ", population: " + _population + ", square: " + _square;
         }
-
+        
         public override bool Equals(object obj)
         {
-            return obj is City city
-                   && _name.Equals(city.Name)
-                   && _population == city.Population
-                   && _square == city.Square;
+            return obj is MegapolisEntity megapolis
+                   && _name.Equals(megapolis.Name)
+                   && _population == megapolis.Population
+                   && _square == megapolis.Square;
         }
 
         public override int GetHashCode()

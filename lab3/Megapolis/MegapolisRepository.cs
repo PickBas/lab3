@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Globalization;
 using lab3.FileWork.JSON;
 using lab3.FileWork.Services;
 using lab3.FileWork.XML;
@@ -10,36 +10,36 @@ using ServiceStack.Text;
 
 namespace lab3.Megapolis
 {
-    public class MegapolisRepository : IRepository<Megapolis>
+    public class MegapolisRepository : IRepository<MegapolisEntity>
     {
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         
-        private List<Megapolis> _megapolis;
+        private List<MegapolisEntity> _megapolis;
 
-        public List<Megapolis> Megapolis => _megapolis;
+        public List<MegapolisEntity> Megapolis => _megapolis;
 
         public MegapolisRepository()
         {
-            _megapolis = new List<Megapolis>();
+            _megapolis = new List<MegapolisEntity>();
         }
         
-        public MegapolisRepository(List<Megapolis> megapolis)
+        public MegapolisRepository(List<MegapolisEntity> megapolis)
         {
             _megapolis = megapolis;
         }
         
         public MegapolisRepository(string filePath, string extension)
         {
-            IReader<Megapolis> reader;
+            IReader<MegapolisEntity> reader;
             switch (extension)
             {
                 case string a when a.Contains("json"):
-                    reader = new JsonReaderFile<Megapolis>();
+                    reader = new JsonReaderFile<MegapolisEntity>();
                     _megapolis = reader.GetData(filePath);
                     break;
                 case string a when a.Contains("xml"):
-                    reader = new XMLReader<Megapolis>();
+                    reader = new XMLReader<MegapolisEntity>();
                     _megapolis = reader.GetData(filePath);
                     break;
                 case string a when a.Contains("csv"):
@@ -56,7 +56,7 @@ namespace lab3.Megapolis
                 Delimiter = ","
             };
             StreamReader reader = new StreamReader(filePath);
-            _megapolis = new List<Megapolis>();
+            _megapolis = new List<MegapolisEntity>();
             using (var csvReader = new CsvHelper.CsvReader(reader, csvConfig))
             {
                 csvReader.Read();
@@ -67,7 +67,7 @@ namespace lab3.Megapolis
                     csvReader.TryGetField<string>(2, out var currentSquareStr);
                     var currentPopulation = int.Parse(currentPopulationStr);
                     var currentSquare = int.Parse(currentSquareStr);
-                    _megapolis.Add(new Megapolis(currentName, currentPopulation, currentSquare));
+                    _megapolis.Add(new MegapolisEntity(currentName, currentPopulation, currentSquare));
                 }
             }
             reader.Close();
@@ -97,7 +97,7 @@ namespace lab3.Megapolis
             Log.Info("MegapolisRepository: Sorted data by square (descending)");
         }
 
-        public void AddObject(Megapolis obj)
+        public void AddObject(MegapolisEntity obj)
         {
             _megapolis.Add(obj);
             Log.Info("MegapolisRepository: Added megapolis with " + obj);
@@ -105,7 +105,7 @@ namespace lab3.Megapolis
 
         public void AddObject(string name, int population, int square)
         {
-            _megapolis.Add(new Megapolis(name, population, square));
+            _megapolis.Add(new MegapolisEntity(name, population, square));
         }
 
         public void DeleteObject(int id)
@@ -114,19 +114,19 @@ namespace lab3.Megapolis
             _megapolis.RemoveAt(id);
         }
 
-        public List<Megapolis> FilterDataByPopulation(int population)
+        public List<MegapolisEntity> FilterDataByPopulation(int population)
         {
             Log.Info("MegapolisRepository: Filtered data by population >= " + population);
             return _megapolis.Where(megapolis => megapolis.Population >= population).ToList();
         }
 
-        public List<Megapolis> FilterDataBySquare(int square)
+        public List<MegapolisEntity> FilterDataBySquare(int square)
         {
             Log.Info("MegapolisRepository: Filtered data by square >= " + square);
             return _megapolis.Where(megapolis => megapolis.Square >= square).ToList();
         }
 
-        public List<Megapolis> GetData()
+        public List<MegapolisEntity> GetData()
         {
             return Megapolis;
         }

@@ -15,19 +15,19 @@ namespace RepositoryTests.FileWork
         private static readonly string _basePath = "../../FileWork/fixtures/";
         
         private RegionRepository _repository;
-        private Region _moscow;
-        private Region _voronezh;
-        private Region _new_york;
-        private Region _la;
+        private RegionEntity _moscow;
+        private RegionEntity _voronezh;
+        private RegionEntity _new_york;
+        private RegionEntity _la;
 
         [TestInitialize]
         public void SetUp()
         {
-            List<Region> cities = new List<Region>();
-            _moscow = new Region("Moscow", 300, 14);
-            _voronezh = new Region("Voronezh", 100, 3);
-            _new_york = new Region("New York", 1000, 24);
-            _la = new Region("LA", 500, 20);
+            List<RegionEntity> cities = new List<RegionEntity>();
+            _moscow = new RegionEntity("Moscow", 300, 14);
+            _voronezh = new RegionEntity("Voronezh", 100, 3);
+            _new_york = new RegionEntity("New York", 1000, 24);
+            _la = new RegionEntity("LA", 500, 20);
             cities.Add(_moscow);
             cities.Add(_voronezh);
             cities.Add(_new_york);
@@ -39,10 +39,10 @@ namespace RepositoryTests.FileWork
         public void ToJsonTest()
         {
             string jsonFilePath = _basePath + "test_json_out.json";
-            IReader<Region> reader = new JsonReaderFile<Region>();
-            IWriter<Region> writer = new JsonWriter<Region>();
+            IReader<RegionEntity> reader = new JsonReaderFile<RegionEntity>();
+            IWriter<RegionEntity> writer = new JsonWriter<RegionEntity>();
             writer.Write(jsonFilePath, _repository);
-            List<Region> entities = reader.GetData(jsonFilePath);
+            List<RegionEntity> entities = reader.GetData(jsonFilePath);
             Assert.AreEqual(_moscow.Name, entities[0].Name);
             Assert.AreEqual(_moscow.Population, entities[0].Population);
             Assert.AreEqual(_moscow.Square, entities[0].Square);
@@ -56,10 +56,10 @@ namespace RepositoryTests.FileWork
         public void ToXmlTest()
         {
             string xmlFilePath = _basePath + "test_xml_out.xml";
-            IReader<Region> reader = new XMLReader<Region>();
-            IWriter<Region> writer = new XMLWriter<Region>();
+            IReader<RegionEntity> reader = new XMLReader<RegionEntity>();
+            IWriter<RegionEntity> writer = new XMLWriter<RegionEntity>();
             writer.Write(xmlFilePath, _repository);
-            List<Region> entities = reader.GetData(xmlFilePath);
+            List<RegionEntity> entities = reader.GetData(xmlFilePath);
             Assert.AreEqual(_moscow.Name, entities[0].Name);
             Assert.AreEqual(_moscow.Population, entities[0].Population);
             Assert.AreEqual(_moscow.Square, entities[0].Square);
@@ -73,7 +73,7 @@ namespace RepositoryTests.FileWork
         public void ToCsvTest()
         {
             string csvFilePath = _basePath + "test_csv_out.csv";
-            IWriter<Region> writer = new CSVWriter<Region>();
+            IWriter<RegionEntity> writer = new CSVWriter<RegionEntity>();
             writer.Write(csvFilePath, _repository);
             RegionRepository repository = new RegionRepository(csvFilePath, "csv");
             Assert.AreEqual(_moscow.Name, repository.Region[0].Name);

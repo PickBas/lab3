@@ -1,19 +1,19 @@
-﻿namespace lab3.Region
+﻿namespace lab3.City
 {
-    public class Region
+    public class CityEntity
     {
         private string _name;
         private int _population;
         private int _square;
 
-        public Region()
+        public CityEntity()
         {
             _name = "Unknown";
             _population = 0;
             _square = 0;
         }
 
-        public Region(string name, int population, int square)
+        public CityEntity(string name, int population, int square)
         {
             _name = name;
             _population = population;
@@ -42,13 +42,13 @@
         {
             return "name: " + _name + ", population: " + _population + ", square: " + _square;
         }
-        
+
         public override bool Equals(object obj)
         {
-            return obj is Region region
-                   && _name.Equals(region.Name)
-                   && _population == region.Population
-                   && _square == region.Square;
+            return obj is CityEntity city
+                   && _name.Equals(city.Name)
+                   && _population == city.Population
+                   && _square == city.Square;
         }
 
         public override int GetHashCode()

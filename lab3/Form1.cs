@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -16,10 +15,10 @@ namespace lab3
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         private string _currentDataType;
-        private IRepository<City.City> _cityRepo; 
-        private IRepository<Megapolis.Megapolis> _megapolisRepo; 
-        private IRepository<Place.Place> _placeRepo; 
-        private IRepository<Region.Region> _regionRepo; 
+        private IRepository<CityEntity> _cityRepo; 
+        private IRepository<MegapolisEntity> _megapolisRepo; 
+        private IRepository<PlaceEntity> _placeRepo; 
+        private IRepository<RegionEntity> _regionRepo; 
 
         public Form1()
         {
@@ -139,19 +138,19 @@ namespace lab3
             switch (_currentDataType)
             {
                 case string b when b.Equals("City"):
-                    saveForm = new SaveDialog<City.City>(_cityRepo);
+                    saveForm = new SaveDialog<CityEntity>(_cityRepo);
                     saveForm.Show();
                     break;
                 case string b when b.Equals("Megapolis"):
-                    saveForm = new SaveDialog<Megapolis.Megapolis>(_megapolisRepo);
+                    saveForm = new SaveDialog<MegapolisEntity>(_megapolisRepo);
                     saveForm.Show();
                     break;
                 case string b when b.Equals("Place"):
-                    saveForm = new SaveDialog<Place.Place>(_placeRepo);
+                    saveForm = new SaveDialog<PlaceEntity>(_placeRepo);
                     saveForm.Show();
                     break;
                 case string b when b.Equals("Region"):
-                    saveForm = new SaveDialog<Region.Region>(_regionRepo);
+                    saveForm = new SaveDialog<RegionEntity>(_regionRepo);
                     saveForm.Show();
                     break;
             }
@@ -170,28 +169,28 @@ namespace lab3
             switch (_currentDataType)
             {
                 case string a when a.Equals("City"):
-                    AddDialog<City.City> addDialogCity = new AddDialog<City.City>(_cityRepo);
+                    AddDialog<CityEntity> addDialogCity = new AddDialog<CityEntity>(_cityRepo);
                     if (addDialogCity.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();
                     }
                     break;
                 case string a when a.Equals("Megapolis"):
-                    AddDialog<Megapolis.Megapolis> addDialogMegapolis = new AddDialog<Megapolis.Megapolis>(_megapolisRepo);
+                    AddDialog<MegapolisEntity> addDialogMegapolis = new AddDialog<MegapolisEntity>(_megapolisRepo);
                     if (addDialogMegapolis.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();
                     }
                     break;
                 case string a when a.Equals("Place"):
-                    AddDialog<Place.Place> addDialogPlace = new AddDialog<Place.Place>(_placeRepo);
+                    AddDialog<PlaceEntity> addDialogPlace = new AddDialog<PlaceEntity>(_placeRepo);
                     if (addDialogPlace.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();
                     }
                     break;
                 case string a when a.Equals("Region"):
-                    AddDialog<Region.Region> addDialogRegion = new AddDialog<Region.Region>(_regionRepo);
+                    AddDialog<RegionEntity> addDialogRegion = new AddDialog<RegionEntity>(_regionRepo);
                     if (addDialogRegion.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();
@@ -206,28 +205,28 @@ namespace lab3
             switch (_currentDataType)
             {
                 case string a when a.Equals("City"):
-                    DeleteDialog<City.City> addDialogCity = new DeleteDialog<City.City>(_cityRepo);
+                    DeleteDialog<CityEntity> addDialogCity = new DeleteDialog<CityEntity>(_cityRepo);
                     if (addDialogCity.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();
                     }
                     break;
                 case string a when a.Equals("Megapolis"):
-                    DeleteDialog<Megapolis.Megapolis> addDialogMegapolis = new DeleteDialog<Megapolis.Megapolis>(_megapolisRepo);
+                    DeleteDialog<MegapolisEntity> addDialogMegapolis = new DeleteDialog<MegapolisEntity>(_megapolisRepo);
                     if (addDialogMegapolis.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();
                     }
                     break;
                 case string a when a.Equals("Place"):
-                    DeleteDialog<Place.Place> addDialogPlace = new DeleteDialog<Place.Place>(_placeRepo);
+                    DeleteDialog<PlaceEntity> addDialogPlace = new DeleteDialog<PlaceEntity>(_placeRepo);
                     if (addDialogPlace.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();
                     }
                     break;
                 case string a when a.Equals("Region"):
-                    DeleteDialog<Region.Region> addDialogRegion = new DeleteDialog<Region.Region>(_regionRepo);
+                    DeleteDialog<RegionEntity> addDialogRegion = new DeleteDialog<RegionEntity>(_regionRepo);
                     if (addDialogRegion.ShowDialog() == DialogResult.OK)
                     {
                         UpdateData();

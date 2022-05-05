@@ -15,19 +15,19 @@ namespace RepositoryTests.FileWork
         private static readonly string _basePath = "../../FileWork/fixtures/";
         
         private MegapolisRepository _repository;
-        private Megapolis _moscow;
-        private Megapolis _voronezh;
-        private Megapolis _new_york;
-        private Megapolis _la;
+        private MegapolisEntity _moscow;
+        private MegapolisEntity _voronezh;
+        private MegapolisEntity _new_york;
+        private MegapolisEntity _la;
 
         [TestInitialize]
         public void SetUp()
         {
-            List<Megapolis> cities = new List<Megapolis>();
-            _moscow = new Megapolis("Moscow", 300, 14);
-            _voronezh = new Megapolis("Voronezh", 100, 3);
-            _new_york = new Megapolis("New York", 1000, 24);
-            _la = new Megapolis("LA", 500, 20);
+            List<MegapolisEntity> cities = new List<MegapolisEntity>();
+            _moscow = new MegapolisEntity("Moscow", 300, 14);
+            _voronezh = new MegapolisEntity("Voronezh", 100, 3);
+            _new_york = new MegapolisEntity("New York", 1000, 24);
+            _la = new MegapolisEntity("LA", 500, 20);
             cities.Add(_moscow);
             cities.Add(_voronezh);
             cities.Add(_new_york);
@@ -39,10 +39,10 @@ namespace RepositoryTests.FileWork
         public void ToJsonTest()
         {
             string jsonFilePath = _basePath + "test_json_out.json";
-            IReader<Megapolis> reader = new JsonReaderFile<Megapolis>();
-            IWriter<Megapolis> writer = new JsonWriter<Megapolis>();
+            IReader<MegapolisEntity> reader = new JsonReaderFile<MegapolisEntity>();
+            IWriter<MegapolisEntity> writer = new JsonWriter<MegapolisEntity>();
             writer.Write(jsonFilePath, _repository);
-            List<Megapolis> entities = reader.GetData(jsonFilePath);
+            List<MegapolisEntity> entities = reader.GetData(jsonFilePath);
             Assert.AreEqual(_moscow.Name, entities[0].Name);
             Assert.AreEqual(_moscow.Population, entities[0].Population);
             Assert.AreEqual(_moscow.Square, entities[0].Square);
@@ -56,10 +56,10 @@ namespace RepositoryTests.FileWork
         public void ToXmlTest()
         {
             string xmlFilePath = _basePath + "test_xml_out.xml";
-            IReader<Megapolis> reader = new XMLReader<Megapolis>();
-            IWriter<Megapolis> writer = new XMLWriter<Megapolis>();
+            IReader<MegapolisEntity> reader = new XMLReader<MegapolisEntity>();
+            IWriter<MegapolisEntity> writer = new XMLWriter<MegapolisEntity>();
             writer.Write(xmlFilePath, _repository);
-            List<Megapolis> entities = reader.GetData(xmlFilePath);
+            List<MegapolisEntity> entities = reader.GetData(xmlFilePath);
             Assert.AreEqual(_moscow.Name, entities[0].Name);
             Assert.AreEqual(_moscow.Population, entities[0].Population);
             Assert.AreEqual(_moscow.Square, entities[0].Square);
@@ -73,7 +73,7 @@ namespace RepositoryTests.FileWork
         public void ToCsvTest()
         {
             string csvFilePath = _basePath + "test_csv_out.csv";
-            IWriter<Megapolis> writer = new CSVWriter<Megapolis>();
+            IWriter<MegapolisEntity> writer = new CSVWriter<MegapolisEntity>();
             writer.Write(csvFilePath, _repository);
             MegapolisRepository repository = new MegapolisRepository(csvFilePath, "csv");
             Assert.AreEqual(_moscow.Name, repository.Megapolis[0].Name);
