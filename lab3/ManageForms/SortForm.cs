@@ -16,11 +16,15 @@ namespace lab3.ManageForms
         private void populationBtn_Click(object sender, EventArgs e)
         {
             _repository.SortDataByPopulationDescending();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void squareBtn_Click(object sender, EventArgs e)
         {
             _repository.SortDataBySquareDescending();
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

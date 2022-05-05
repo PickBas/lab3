@@ -235,52 +235,6 @@ namespace lab3
             }
         }
 
-        private void SortPopulationData()
-        {
-            switch (_currentDataType) 
-            {
-                case string a when a.Equals("City"):
-                    _cityRepo.SortDataByPopulationDescending();
-                    FillData();
-                    break;
-                case string a when a.Equals("Megapolis"):
-                    _megapolisRepo.SortDataByPopulationDescending();
-                    FillData();
-                    break;
-                case string a when a.Equals("Place"):
-                    _placeRepo.SortDataByPopulationDescending();
-                    FillData();
-                    break; 
-                case string a when a.Equals("Region"):
-                    _regionRepo.SortDataByPopulationDescending();
-                    FillData();
-                    break;
-            }
-        }
-        
-        private void SortSquareData()
-        {
-            switch (_currentDataType) 
-            {
-                case string a when a.Equals("City"):
-                    _cityRepo.SortDataBySquareDescending();
-                    FillData();
-                    break;
-                case string a when a.Equals("Megapolis"):
-                    _megapolisRepo.SortDataBySquareDescending();
-                    FillData();
-                    break;
-                case string a when a.Equals("Place"):
-                    _placeRepo.SortDataBySquareDescending();
-                    FillData();
-                    break; 
-                case string a when a.Equals("Region"):
-                    _regionRepo.SortDataBySquareDescending();
-                    FillData();
-                    break;
-            }
-        }
-
         private void filterBtn_Click(object sender, EventArgs e)
         {
             FilterDialog filterDialog = new FilterDialog(dataGridView1);
@@ -290,7 +244,33 @@ namespace lab3
 
         private void sortBtn_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            switch (_currentDataType) 
+            {
+                case string a when a.Equals("City"):
+                    SortForm<CityEntity> formCity = new SortForm<CityEntity>(_cityRepo);
+                    if (formCity.ShowDialog() == DialogResult.OK) {
+                        UpdateData();
+                    }
+                    break;
+                case string a when a.Equals("Megapolis"):
+                    SortForm<MegapolisEntity> formMegapolis = new SortForm<MegapolisEntity>(_megapolisRepo);
+                    if (formMegapolis.ShowDialog() == DialogResult.OK) {
+                        UpdateData();
+                    }
+                    break;
+                case string a when a.Equals("Place"):
+                    SortForm<PlaceEntity> formPlace = new SortForm<PlaceEntity>(_placeRepo);
+                    if (formPlace.ShowDialog() == DialogResult.OK) {
+                        UpdateData();
+                    }
+                    break; 
+                case string a when a.Equals("Region"):
+                    SortForm<RegionEntity> formRegion = new SortForm<RegionEntity>(_regionRepo);
+                    if (formRegion.ShowDialog() == DialogResult.OK) {
+                        UpdateData();
+                    }
+                    break;
+            }
         }
     }
 }
