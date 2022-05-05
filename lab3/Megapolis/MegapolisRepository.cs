@@ -105,7 +105,9 @@ namespace lab3.Megapolis
 
         public void AddObject(string name, int population, int square)
         {
-            _megapolis.Add(new MegapolisEntity(name, population, square));
+            MegapolisEntity obj = new MegapolisEntity(name, population, square);
+            _megapolis.Add(obj);
+            Log.Info("MegapolisRepository: Added megapolis with " + obj);
         }
 
         public void DeleteObject(int id)

@@ -105,7 +105,9 @@ namespace lab3.Place
 
         public void AddObject(string name, int population, int square)
         {
-            _place.Add(new PlaceEntity(name, population, square));
+            PlaceEntity obj = new PlaceEntity(name, population, square);
+            _place.Add(obj);
+            Log.Info("PlaceRepository: Added place with " + obj);
         }
 
         public void DeleteObject(int id)

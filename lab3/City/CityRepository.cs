@@ -105,7 +105,10 @@ namespace lab3.City
 
         public void AddObject(string name, int population, int square)
         {
-            _cities.Add(new CityEntity(name, population, square));
+            CityEntity obj = new CityEntity(name, population, square);
+            _cities.Add(obj);
+            Log.Info("CityRepository: Added city with " + obj);
+
         }
 
         public void DeleteObject(int id)

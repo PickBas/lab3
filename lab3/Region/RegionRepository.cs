@@ -104,7 +104,9 @@ namespace lab3.Region
 
         public void AddObject(string name, int population, int square)
         {
-            _region.Add(new RegionEntity(name, population, square));
+            RegionEntity obj = new RegionEntity(name, population, square);
+            _region.Add(obj);
+            Log.Info("RegionRepository: Added city with ");
         }
 
         public void DeleteObject(int id)
