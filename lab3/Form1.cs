@@ -13,7 +13,8 @@ namespace lab3
 {
     public partial class Form1 : Form
     {
-
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger
+            (System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         private string _currentDataType;
         private IRepository<City.City> _cityRepo; 
         private IRepository<Megalopolis.Megapolis> _megapolisRepo; 
@@ -28,6 +29,7 @@ namespace lab3
             _placeRepo = new PlaceRepository();
             _regionRepo = new RegionRepository();
             InitializeComponent();
+            Log.Info("Initialized Form1");
         }
 
         private void UpdateData()
@@ -127,6 +129,7 @@ namespace lab3
                         break;
                 }
                 UpdateData();
+                Log.Info("Opened file: " + filePathLabel.Text);
             }
         }
 
@@ -152,12 +155,14 @@ namespace lab3
                     saveForm.Show();
                     break;
             }
+            Log.Info("Saved file");
         }
 
         private void entityChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
             _currentDataType = (sender as ComboBox)?.Text;
             UpdateData();
+            Log.Info("Changed entity");
         }
 
         private void addItemBtn_Click(object sender, EventArgs e)
@@ -193,6 +198,7 @@ namespace lab3
                     }
                     break;
             }
+            Log.Info("Added item to data grid");
         }
 
         private void deleteItemBtn_Click(object sender, EventArgs e)
@@ -257,6 +263,7 @@ namespace lab3
         {
             FilterDialog filterDialog = new FilterDialog(dataGridView1);
             filterDialog.Show();
+            Log.Info("Filtered data");
         }
     }
 }
