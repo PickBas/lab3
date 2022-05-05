@@ -271,6 +271,7 @@ namespace lab3
                     }
                     break;
             }
+            Log.Info("Sorted data");
         }
     }
 }
