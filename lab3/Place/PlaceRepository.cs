@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Globalization;
 using lab3.FileWork.JSON;
 using lab3.FileWork.Services;
 using lab3.FileWork.XML;
@@ -10,36 +10,36 @@ using ServiceStack.Text;
 
 namespace lab3.Place
 {
-    public class PlaceRepository : IRepository<Place>
+    public class PlaceRepository : IRepository<PlaceEntity>
     {
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger
             (System.Reflection.MethodBase.GetCurrentMethod()?.DeclaringType);
         
-        private List<Place> _place;
+        private List<PlaceEntity> _place;
 
-        public List<Place> Place => _place;
+        public List<PlaceEntity> Place => _place;
 
         public PlaceRepository()
         {
-            _place = new List<Place>();
+            _place = new List<PlaceEntity>();
         }
         
-        public PlaceRepository(List<Place> place)
+        public PlaceRepository(List<PlaceEntity> place)
         {
             _place = place;
         }
         
         public PlaceRepository(string filePath, string extension)
         {
-            IReader<Place> reader;
+            IReader<PlaceEntity> reader;
             switch (extension)
             {
                 case string a when a.Contains("json"):
-                    reader = new JsonReaderFile<Place>();
+                    reader = new JsonReaderFile<PlaceEntity>();
                     _place = reader.GetData(filePath);
                     break;
                 case string a when a.Contains("xml"):
-                    reader = new XMLReader<Place>();
+                    reader = new XMLReader<PlaceEntity>();
                     _place = reader.GetData(filePath);
                     break;
                 case string a when a.Contains("csv"):
@@ -56,7 +56,7 @@ namespace lab3.Place
                 Delimiter = ","
             };
             StreamReader reader = new StreamReader(filePath);
-            _place = new List<Place>();
+            _place = new List<PlaceEntity>();
             using (var csvReader = new CsvHelper.CsvReader(reader, csvConfig))
             {
                 csvReader.Read();
@@ -67,7 +67,7 @@ namespace lab3.Place
                     csvReader.TryGetField<string>(2, out var currentSquareStr);
                     var currentPopulation = int.Parse(currentPopulationStr);
                     var currentSquare = int.Parse(currentSquareStr);
-                    _place.Add(new Place(currentName, currentPopulation, currentSquare));
+                    _place.Add(new PlaceEntity(currentName, currentPopulation, currentSquare));
                 }
             }
             reader.Close();
@@ -97,7 +97,7 @@ namespace lab3.Place
             Log.Info("PlaceRepository: Sorted data by square (descending)");
         }
 
-        public void AddObject(Place obj)
+        public void AddObject(PlaceEntity obj)
         {
             _place.Add(obj);
             Log.Info("PlaceRepository: Added place with " + obj);
@@ -105,7 +105,9 @@ namespace lab3.Place
 
         public void AddObject(string name, int population, int square)
         {
-            _place.Add(new Place(name, population, square));
+            PlaceEntity obj = new PlaceEntity(name, population, square);
+            _place.Add(obj);
+            Log.Info("PlaceRepository: Added place with " + obj);
         }
 
         public void DeleteObject(int id)
@@ -114,19 +116,19 @@ namespace lab3.Place
             _place.RemoveAt(id);
         }
 
-        public List<Place> FilterDataByPopulation(int population)
+        public List<PlaceEntity> FilterDataByPopulation(int population)
         {
             Log.Info("PlaceRepository: Filtered data by population >= " + population);
             return _place.Where(place => place.Population >= population).ToList();
         }
 
-        public List<Place> FilterDataBySquare(int square)
+        public List<PlaceEntity> FilterDataBySquare(int square)
         {
             Log.Info("PlaceRepository: Filtered data by square >= " + square);
             return _place.Where(place => place.Square >= square).ToList();
         }
 
-        public List<Place> GetData()
+        public List<PlaceEntity> GetData()
         {
             return Place;
         }

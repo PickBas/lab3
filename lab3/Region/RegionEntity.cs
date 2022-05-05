@@ -1,19 +1,19 @@
-﻿namespace lab3.Place
+﻿namespace lab3.Region
 {
-    public class Place
+    public class RegionEntity
     {
         private string _name;
         private int _population;
         private int _square;
 
-        public Place()
+        public RegionEntity()
         {
             _name = "Unknown";
             _population = 0;
             _square = 0;
         }
 
-        public Place(string name, int population, int square)
+        public RegionEntity(string name, int population, int square)
         {
             _name = name;
             _population = population;
@@ -45,10 +45,10 @@
         
         public override bool Equals(object obj)
         {
-            return obj is Place place
-                   && _name.Equals(place.Name)
-                   && _population == place.Population
-                   && _square == place.Square;
+            return obj is RegionEntity region
+                   && _name.Equals(region.Name)
+                   && _population == region.Population
+                   && _square == region.Square;
         }
 
         public override int GetHashCode()

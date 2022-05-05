@@ -1,19 +1,19 @@
-﻿namespace lab3.Megalopolis
+﻿namespace lab3.Place
 {
-    public class Megapolis
+    public class PlaceEntity
     {
         private string _name;
         private int _population;
         private int _square;
 
-        public Megapolis()
+        public PlaceEntity()
         {
             _name = "Unknown";
             _population = 0;
             _square = 0;
         }
 
-        public Megapolis(string name, int population, int square)
+        public PlaceEntity(string name, int population, int square)
         {
             _name = name;
             _population = population;
@@ -45,10 +45,10 @@
         
         public override bool Equals(object obj)
         {
-            return obj is Megapolis megapolis
-                   && _name.Equals(megapolis.Name)
-                   && _population == megapolis.Population
-                   && _square == megapolis.Square;
+            return obj is PlaceEntity place
+                   && _name.Equals(place.Name)
+                   && _population == place.Population
+                   && _square == place.Square;
         }
 
         public override int GetHashCode()

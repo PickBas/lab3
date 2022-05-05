@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using lab3.Place;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RepositoryTests
 {
@@ -9,19 +8,19 @@ namespace RepositoryTests
     public class PlaceRepositoryTests
     {
         private PlaceRepository _repository;
-        private Place _moscow;
-        private Place _voronezh;
-        private Place _new_york;
-        private Place _la;
+        private PlaceEntity _moscow;
+        private PlaceEntity _voronezh;
+        private PlaceEntity _new_york;
+        private PlaceEntity _la;
         
         [TestInitialize]
         public void SetUp()
         {
-            List<Place> cities = new List<Place>();
-            _moscow = new Place("Moscow", 300, 14);
-            _voronezh = new Place("Voronezh", 100, 3);
-            _new_york = new Place("New York", 1000, 24);
-            _la = new Place("LA", 500, 20);
+            List<PlaceEntity> cities = new List<PlaceEntity>();
+            _moscow = new PlaceEntity("Moscow", 300, 14);
+            _voronezh = new PlaceEntity("Voronezh", 100, 3);
+            _new_york = new PlaceEntity("New York", 1000, 24);
+            _la = new PlaceEntity("LA", 500, 20);
             cities.Add(_moscow);
             cities.Add(_voronezh);
             cities.Add(_new_york);
@@ -60,7 +59,7 @@ namespace RepositoryTests
         [TestMethod]
         public void AddObjectTest()
         {
-            Place dubai = new Place("Dubai", 70000, 500);
+            PlaceEntity dubai = new PlaceEntity("Dubai", 70000, 500);
             _repository.AddObject(dubai);
             Assert.IsTrue(_repository.Place.Contains(dubai));   
         }
@@ -76,7 +75,7 @@ namespace RepositoryTests
         [TestMethod]
         public void FilterDataByPopulation()
         {
-            List<Place> cities = _repository.FilterDataByPopulation(300);
+            List<PlaceEntity> cities = _repository.FilterDataByPopulation(300);
             Assert.IsFalse(cities.Contains(_voronezh));
             Assert.IsTrue(cities.Contains(_moscow));
         }
@@ -84,7 +83,7 @@ namespace RepositoryTests
         [TestMethod]
         public void FilterDataBySquare()
         {
-            List<Place> cities = _repository.FilterDataBySquare(14);
+            List<PlaceEntity> cities = _repository.FilterDataBySquare(14);
             Assert.IsFalse(cities.Contains(_voronezh));
             Assert.IsTrue(cities.Contains(_moscow));
         }
