@@ -124,6 +124,12 @@
     <Compile Include="ManageForms\FilterDialog.Designer.cs">
       <DependentUpon>FilterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageForms\SortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageForms\SortForm.Designer.cs">
+      <DependentUpon>SortForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Megalopolis\Megapolis.cs" />
     <Compile Include="Megalopolis\MegapolisRepository.cs" />
     <Compile Include="Place\Place.cs" />
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageForms\FilterDialog.resx">
       <DependentUpon>FilterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageForms\SortForm.resx">
+      <DependentUpon>SortForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -258,12 +258,40 @@ namespace lab3
                     break;
             }
         }
+        
+        private void SortSquareData()
+        {
+            switch (_currentDataType) 
+            {
+                case string a when a.Equals("City"):
+                    _cityRepo.SortDataBySquareDescending();
+                    FillData();
+                    break;
+                case string a when a.Equals("Megapolis"):
+                    _megapolisRepo.SortDataBySquareDescending();
+                    FillData();
+                    break;
+                case string a when a.Equals("Place"):
+                    _placeRepo.SortDataBySquareDescending();
+                    FillData();
+                    break; 
+                case string a when a.Equals("Region"):
+                    _regionRepo.SortDataBySquareDescending();
+                    FillData();
+                    break;
+            }
+        }
 
         private void filterBtn_Click(object sender, EventArgs e)
         {
             FilterDialog filterDialog = new FilterDialog(dataGridView1);
             filterDialog.Show();
             Log.Info("Filtered data");
+        }
+
+        private void sortBtn_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
