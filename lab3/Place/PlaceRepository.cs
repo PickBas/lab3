@@ -103,6 +103,11 @@ namespace lab3.Place
             Log.Info("PlaceRepository: Added place with " + obj);
         }
 
+        public void AddObject(string name, int population, int square)
+        {
+            _place.Add(new Place(name, population, square));
+        }
+
         public void DeleteObject(int id)
         {
             Log.Info("PlaceRepository: Removed place with " + _place[id]);

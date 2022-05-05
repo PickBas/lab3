@@ -102,6 +102,11 @@ namespace lab3.Region
             Log.Info("RegionRepository: Added city with ");
         }
 
+        public void AddObject(string name, int population, int square)
+        {
+            _region.Add(new Region(name, population, square));
+        }
+
         public void DeleteObject(int id)
         {
             Log.Info("RegionRepository: Removed city with " + _region[id]);

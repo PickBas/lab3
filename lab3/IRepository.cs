@@ -9,6 +9,7 @@ namespace lab3
         void SortDataBySquare();
         void SortDataBySquareDescending();
         void AddObject(T obj);
+        void AddObject(string name, int population, int square);
         void DeleteObject(int id);
         List<T> FilterDataByPopulation(int population);
         List<T> FilterDataBySquare(int square);

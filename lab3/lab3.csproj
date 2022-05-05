@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6BA9DEE3-3C5E-4912-A682-EDF1F08DAC6A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>lab3</RootNamespace>
     <AssemblyName>lab3</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -106,6 +106,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IRepository.cs" />
+    <Compile Include="ManageForms\AddDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageForms\AddDialog.Designer.cs">
+      <DependentUpon>AddDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Megalopolis\Megapolis.cs" />
     <Compile Include="Megalopolis\MegapolisRepository.cs" />
     <Compile Include="Place\Place.cs" />
@@ -122,6 +128,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageForms\AddDialog.resx">
+      <DependentUpon>AddDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

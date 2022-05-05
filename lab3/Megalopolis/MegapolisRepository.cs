@@ -103,6 +103,11 @@ namespace lab3.Megalopolis
             Log.Info("MegapolisRepository: Added megapolis with " + obj);
         }
 
+        public void AddObject(string name, int population, int square)
+        {
+            _megapolis.Add(new Megapolis(name, population, square));
+        }
+
         public void DeleteObject(int id)
         {
             Log.Info("MegapolisRepository: Removed megapolis with " + _megapolis[id]);

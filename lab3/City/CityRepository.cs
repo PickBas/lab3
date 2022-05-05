@@ -104,6 +104,11 @@ namespace lab3.City
             Log.Info("CityRepository: Added city with " + obj);
         }
 
+        public void AddObject(string name, int population, int square)
+        {
+            _cities.Add(new City(name, population, square));
+        }
+
         public void DeleteObject(int id)
         {
             Log.Info("CityRepository: Removed city with " + _cities[id]);

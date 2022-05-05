@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using lab3.City;
+using lab3.ManageForms;
 using lab3.Megalopolis;
 using lab3.Place;
 using lab3.Region;
@@ -149,6 +150,41 @@ namespace lab3
         {
             _currentDataType = (sender as ComboBox)?.Text;
             UpdateData();
+        }
+
+        private void addItemBtn_Click(object sender, EventArgs e)
+        {
+            switch (_currentDataType)
+            {
+                case string a when a.Equals("City"):
+                    AddDialog<City.City> addDialogCity = new AddDialog<City.City>(_cityRepo);
+                    if (addDialogCity.ShowDialog() == DialogResult.OK)
+                    {
+                        UpdateData();
+                    }
+                    break;
+                case string a when a.Equals("Megapolis"):
+                    AddDialog<Megapolis> addDialogMegapolis = new AddDialog<Megapolis>(_megapolisRepo);
+                    if (addDialogMegapolis.ShowDialog() == DialogResult.OK)
+                    {
+                        UpdateData();
+                    }
+                    break;
+                case string a when a.Equals("Place"):
+                    AddDialog<Place.Place> addDialogPlace = new AddDialog<Place.Place>(_placeRepo);
+                    if (addDialogPlace.ShowDialog() == DialogResult.OK)
+                    {
+                        UpdateData();
+                    }
+                    break;
+                case string a when a.Equals("Region"):
+                    AddDialog<Region.Region> addDialogRegion = new AddDialog<Region.Region>(_regionRepo);
+                    if (addDialogRegion.ShowDialog() == DialogResult.OK)
+                    {
+                        UpdateData();
+                    }
+                    break;
+            }
         }
     }
 }
