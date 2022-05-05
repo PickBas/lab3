@@ -186,5 +186,40 @@ namespace lab3
                     break;
             }
         }
+
+        private void deleteItemBtn_Click(object sender, EventArgs e)
+        {
+            switch (_currentDataType)
+            {
+                case string a when a.Equals("City"):
+                    DeleteDialog<City.City> addDialogCity = new DeleteDialog<City.City>(_cityRepo);
+                    if (addDialogCity.ShowDialog() == DialogResult.OK)
+                    {
+                        UpdateData();
+                    }
+                    break;
+                case string a when a.Equals("Megapolis"):
+                    DeleteDialog<Megapolis> addDialogMegapolis = new DeleteDialog<Megapolis>(_megapolisRepo);
+                    if (addDialogMegapolis.ShowDialog() == DialogResult.OK)
+                    {
+                        UpdateData();
+                    }
+                    break;
+                case string a when a.Equals("Place"):
+                    DeleteDialog<Place.Place> addDialogPlace = new DeleteDialog<Place.Place>(_placeRepo);
+                    if (addDialogPlace.ShowDialog() == DialogResult.OK)
+                    {
+                        UpdateData();
+                    }
+                    break;
+                case string a when a.Equals("Region"):
+                    DeleteDialog<Region.Region> addDialogRegion = new DeleteDialog<Region.Region>(_regionRepo);
+                    if (addDialogRegion.ShowDialog() == DialogResult.OK)
+                    {
+                        UpdateData();
+                    }
+                    break;
+            }
+        }
     }
 }

@@ -112,6 +112,12 @@
     <Compile Include="ManageForms\AddDialog.Designer.cs">
       <DependentUpon>AddDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageForms\DeleteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageForms\DeleteDialog.Designer.cs">
+      <DependentUpon>DeleteDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Megalopolis\Megapolis.cs" />
     <Compile Include="Megalopolis\MegapolisRepository.cs" />
     <Compile Include="Place\Place.cs" />
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageForms\AddDialog.resx">
       <DependentUpon>AddDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageForms\DeleteDialog.resx">
+      <DependentUpon>DeleteDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

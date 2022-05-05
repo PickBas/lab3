@@ -102,6 +102,7 @@ namespace lab3
             this.deleteItemBtn.TabIndex = 6;
             this.deleteItemBtn.Text = "Delete";
             this.deleteItemBtn.UseVisualStyleBackColor = true;
+            this.deleteItemBtn.Click += new System.EventHandler(this.deleteItemBtn_Click);
             // 
             // sortBtn
             // 
